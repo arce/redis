@@ -15,7 +15,7 @@ exports.handler = async (event, context) => {
       console.log("You are now connected");
     });
 
-    const book_n = await client.get("book_N");
+    //const book_n = await client.get("book_N");
 
     const pipeline = client.pipeline();
    
