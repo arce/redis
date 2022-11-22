@@ -15,7 +15,12 @@ exports.handler = async (event, context) => {
       console.log("You are now connected");
     });
 
-    const authors = await client.mget(["book_1","book_2"]);
+    const pipeline = client.pipeline();
+    
+    client.get("book_1");
+    client.get("book_2");
+
+    const authors = await pipeline.exec()
 
     return { statusCode: 200, headers, body: JSON.stringify(authors)};
   } catch (error) {
