@@ -1,6 +1,6 @@
 "use strict"
 
-const clientPromise = require('./redisDB');
+const client = require('./redisDB');
 const headers = require('./headersCORS');
 
 exports.handler = async (event, context) => {
@@ -10,7 +10,7 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    const client = await clientPromise;
+    //const client = await clientPromise;
 
     //const authors = await client.hgetall("books");
 
