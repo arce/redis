@@ -12,7 +12,11 @@ exports.handler = async (event, context) => {
   try {
     const client = await clientPromise;
 
-    const authors = await client.hgetall("books");
+    //const authors = await client.hgetall("books");
+
+    client.on("connect", function() {
+      console.log("You are now connected");
+    });
 
     return { statusCode: 200, headers, body: JSON.stringify(authors)};
   } catch (error) {
