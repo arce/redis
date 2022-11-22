@@ -15,7 +15,7 @@ exports.handler = async (event, context) => {
       console.log("You are now connected");
     });
 
-    const authors = await client.hgetall("book_*");
+    const authors = await client.mget(["book_1","book_2"]);
 
     return { statusCode: 200, headers, body: JSON.stringify(authors)};
   } catch (error) {
