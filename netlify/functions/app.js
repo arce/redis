@@ -19,7 +19,7 @@ exports.handler = async (event, context) => {
 
     const pipeline = client.pipeline();
    
-    for (i=1;i<book_n;i++)
+    for (i=1;i<Number(book_n);i++)
       client.get("book_"+String(i));
 
     const authors = await pipeline.exec();
