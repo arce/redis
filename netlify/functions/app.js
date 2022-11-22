@@ -19,10 +19,10 @@ exports.handler = async (event, context) => {
 
     const pipeline = client.pipeline();
    
-    for (i=1;i<=book_n;i++)
+    for (i=1;i<book_n;i++)
       client.get("book_"+i);
 
-    const authors = await pipeline.exec()
+    const authors = await pipeline.exec();
 
     return { statusCode: 200, headers, body: JSON.stringify(authors)};
   } catch (error) {
