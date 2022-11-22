@@ -15,7 +15,7 @@ exports.handler = async (event, context) => {
       console.log("You are now connected");
     });
 
-    const book_n = await client.get("book_N");
+    const book_n = await client.get('book_N');
 
     const pipeline = client.pipeline();
    
@@ -23,8 +23,8 @@ exports.handler = async (event, context) => {
     // pipeline.get('book_1');
     // pipeline.get('book_2');
 
-    for (i=1;i<Number(book_n);i++)
-      pipeline.get("book_"+String(i));
+    for (i=1;i<=book_n;i++)
+      pipeline.get('book_'+i);
 
     const books = await pipeline.exec();
 
