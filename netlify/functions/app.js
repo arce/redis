@@ -15,16 +15,15 @@ exports.handler = async (event, context) => {
       console.log("You are now connected");
     });
     
-    const stream = client.scanStream({match: "book_:*"});
+    const stream = client.scanStream({match: "book_*"});
     
-    let ids =[];
+    let books = [];
     
     stream.on("data", (resultKeys) => {
-     for (let i = 0; i < resultKeys.length; i++)
-      ids.push(resultKeys[i]);
+      books = await client.mget(resultKeys);
     });
-
-    return { statusCode: 200, headers, body: JSON.stringify(ids)};
+    
+    return { statusCode: 200, headers, body: JSON.stringify(books)};
   } catch (error) {
     console.log(error);
     return { statusCode: 400, headers, body: JSON.stringify(error) };
