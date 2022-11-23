@@ -14,26 +14,17 @@ exports.handler = async (event, context) => {
     client.on("connect", function() {
       console.log("You are now connected");
     });
-
-    //const book_n = await client.get('book_N');
-    const book_n = 4;
-
-    //const pipeline = client.pipeline();
-    //let ids = ['book_1','book_2'];
-    let ids = [];
-    for (i=1;i<=book_n;i++)
-      ids.push(`book_${i}`);
     
-    const books = await client.mget(ids);
-    // pipeline.get('book_1');
-    // pipeline.get('book_2');
+    const stream = client.scanStream({match: "book_:*"});
+    
+    let ids =[];
+    
+    stream.on("data", (resultKeys) => {
+     for (let i = 0; i < resultKeys.length; i++)
+      ids.push(resultKeys[i]);
+    });
 
-    //for (i=1;i<=book_n;i++)
-    //  pipeline.get('book_'+i);
-
-    //const books = await pipeline.exec();
-
-    return { statusCode: 200, headers, body: JSON.stringify(books)};
+    return { statusCode: 200, headers, body: JSON.stringify(ids)};
   } catch (error) {
     console.log(error);
     return { statusCode: 400, headers, body: JSON.stringify(error) };
