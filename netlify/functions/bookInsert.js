@@ -19,17 +19,10 @@ exports.handler = async (event, context) => {
       console.log("You are now connected");
     });
    
-   let keys = [];
-   let n = await redis.get('book_N');
-	  
-   for(let i = 1; i<=n; i++)
-     keys.push('book_'+i);
+   const data = JSON.parse(event.body);
 
-   const books = await redis.mget(keys);
-	  
-   books.forEach(toJson);
-		
-    return { statusCode: 200, headers, body: JSON.stringify(books)};
+   await redis.put(data.id,event.body);
+   return { statusCode: 200, headers, body: 'OK'};
   } catch (error) {
     console.log(error);
     return { statusCode: 400, headers, body: JSON.stringify(error) };
