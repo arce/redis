@@ -1,6 +1,6 @@
 "use strict"
 
-const clientPromise = require('./redisDB');
+const redis = require('./redisDB');
 const headers = require('./headersCORS');
 
 exports.handler = async (event, context) => {
@@ -10,10 +10,15 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    const client = await clientPromise;
-    const id = parseInt(event.path.split("/").reverse()[0]);
+    
+    redis.on("connect", function() {
+      console.log("You are now connected");
+    });
+    
+    const id = event.path.split("/").reverse()[0];
 
-    await client.db("bookstore").collection("books").deleteOne({_id:id});
+    await redis.del(id);
+    await redis.decr('book_N');
 
     return { statusCode: 200, headers, body: 'OK'};
   } catch (error) {
