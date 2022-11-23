@@ -19,9 +19,9 @@ exports.handler = async (event, context) => {
     const book_n = 4;
 
     //const pipeline = client.pipeline();
-    let ids = [];
-    for (i=1;i<=book_n;i++)
-      ids.push('book_1');
+    let ids = ['book_1','book_2'];
+    // for (i=1;i<=book_n;i++)
+    //   ids.push('book_1');
     
     const books = await client.mget(ids);
     // pipeline.get('book_1');
