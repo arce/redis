@@ -15,7 +15,9 @@ exports.handler = async (event, context) => {
       console.log("You are now connected");
     });
    
-   const keys = ['book_1','book_2'];
+   let keys = [];
+   keys.push('book_1');
+   keys.push('book_2');
 
    const books = await redis.mget(keys);
 		
