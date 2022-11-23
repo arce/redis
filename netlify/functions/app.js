@@ -15,7 +15,7 @@ exports.handler = async (event, context) => {
       console.log("You are now connected");
     });
     
-    const stream = client.scanStream({match: "book_*"});
+    const stream = await client.scanStream({match: "book_*"});
     
     let books = [];
     
