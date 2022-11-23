@@ -16,10 +16,9 @@ exports.handler = async (event, context) => {
     });
    
    let keys = [];
-   let i = 1;
-   keys.push('book_'+i);
-   i++;
-   keys.push('book_'+i);
+   
+   for(let i = 1,i<4;i++)
+     keys.push('book_'+i);
 
    const books = await redis.mget(keys);
 		
