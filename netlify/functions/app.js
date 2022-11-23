@@ -18,16 +18,16 @@ exports.handler = async (event, context) => {
     //const book_n = await client.get('book_N');
     const book_n = 4;
 
-    const pipeline = client.pipeline();
+    //const pipeline = client.pipeline();
    
-    // const books = client.mget(["book_1","book_2"]);
+    const books = await client.mget(['book_1','book_2']);
     // pipeline.get('book_1');
     // pipeline.get('book_2');
 
-    for (i=1;i<=book_n;i++)
+    //for (i=1;i<=book_n;i++)
       pipeline.get('book_'+i);
 
-    const books = await pipeline.exec();
+    //const books = await pipeline.exec();
 
     return { statusCode: 200, headers, body: JSON.stringify(books)};
   } catch (error) {
