@@ -23,7 +23,7 @@ exports.handler = async (event, context) => {
 
    const books = await redis.mget(keys);
 		
-    return { statusCode: 200, headers, body: books};
+    return { statusCode: 200, headers, body: JSON.stringify(books)};
   } catch (error) {
     console.log(error);
     return { statusCode: 400, headers, body: JSON.stringify(error) };
