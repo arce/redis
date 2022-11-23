@@ -14,8 +14,10 @@ exports.handler = async (event, context) => {
     redis.on("connect", function() {
       console.log("You are now connected");
     });
-    
-   const books = await redis.call("MGET",'[book_1,book_2]');
+   
+   const keys = ['book_1','book_2'];
+
+   const books = await redis.mget(keys);
 		
     return { statusCode: 200, headers, body: JSON.stringify(books)};
   } catch (error) {
