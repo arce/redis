@@ -20,7 +20,7 @@ exports.handler = async (event, context) => {
     let books = [];
     
     stream.on("data", (resultKeys) => {
-      books = await client.mget(resultKeys);
+      books = client.mget(resultKeys);
     });
     
     return { statusCode: 200, headers, body: JSON.stringify(books)};
