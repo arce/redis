@@ -17,9 +17,9 @@ exports.handler = async (event, context) => {
     
     const id = event.path.split("/").reverse()[0];
     
-  //  redis.on("connect", function() {
-  //    console.log("You are now connected");
-  //  });
+   redis.on("connect", function() {
+      console.log("You are now connected");
+   });
 
    const book = await redis.get(id);
    let books = [];
