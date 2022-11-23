@@ -22,9 +22,7 @@ exports.handler = async (event, context) => {
     });
 
    const book = await redis.get(id);
-    
-	 let books = [];
- 
+   let books = [];
    books.push(book);
    books.forEach(toJson);
 		
