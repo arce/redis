@@ -1,6 +1,6 @@
 "use strict"
 
-const client = require('./redisDB');
+const redis = require('./redisDB');
 const headers = require('./headersCORS');
 
 exports.handler = async (event, context) => {
@@ -11,19 +11,12 @@ exports.handler = async (event, context) => {
 
   try {
     
-    client.on("connect", function() {
+    redis.on("connect", function() {
       console.log("You are now connected");
     });
     
-    const stream = await client.scanStream({match: "book_*"});
-    
-    let books = [];
-    
-    stream.on("data", (resultKeys) => {
-    //  books = client.mget(resultKeys);
-      books = resultKeys;
-    });
-    
+		const books = await redis.mget(['book_1','book_2']);
+		
     return { statusCode: 200, headers, body: JSON.stringify(books)};
   } catch (error) {
     console.log(error);
