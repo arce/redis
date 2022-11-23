@@ -25,7 +25,7 @@ exports.handler = async (event, context) => {
     // pipeline.get('book_2');
 
     //for (i=1;i<=book_n;i++)
-      pipeline.get('book_'+i);
+    //  pipeline.get('book_'+i);
 
     //const books = await pipeline.exec();
 
