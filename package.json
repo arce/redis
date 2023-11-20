@@ -8,12 +8,12 @@
   },
   "dependencies": {
     "redis-cli": "^2.1.2",
-    "vue": "latest",
-    "vue-router": "latest"
+    "vue": "^3.2.16",
+    "vue-router": "^4.0.12"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "latest",
-    "ioredis": "latest",
-    "vite": "latest"
+    "@vitejs/plugin-vue": "^1.9.3",
+    "vite": "^2.6.4",
+    "ioredis": "latest"
   }
 }
