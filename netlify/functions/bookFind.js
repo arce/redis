@@ -15,13 +15,13 @@ exports.handler = async (event, context) => {
 
   try {
     
-   const id = parseInt(event.path.split("/").reverse()[0]);
+   const id = event.path.split("/").reverse()[0];
     
    redis.on("connect", function() {
       console.log("You are now connected");
    });
 
-   const book = await redis.get(id);
+   const book = await redis.get('book_'+id);
    let books = [];
    books.push(book);
    books.forEach(toJson);
