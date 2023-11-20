@@ -15,7 +15,7 @@ exports.handler = async (event, context) => {
 
   try {
     
-    const id = event.path.split("/").reverse()[0];
+   const id = parseInt(event.path.split("/").reverse()[0]);
     
    redis.on("connect", function() {
       console.log("You are now connected");
