@@ -62,10 +62,10 @@ exports.handler = async (event, context) => {
       console.log("You are now connected");
     });
 
-	const n = books.length;
+	 const n = books.length;
 		
    for(let i = 1; i<=n; i++)
-     await redis.put('book_'+i,JSON.stringify(books[i]));
+     await redis.put('book_'+i,JSON.stringify(books[i-1]));
 	 
    await redis.put('book_N',n);
     
