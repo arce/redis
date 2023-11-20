@@ -1,5 +1,19 @@
 {
+  "name": "vite-project",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
   "dependencies": {
-    "ioredis": "^5.2.4"
+    "redis-cli": "^2.1.2",
+    "vue": "latest",
+    "vue-router": "latest"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "latest",
+    "ioredis": "latest",
+    "vite": "latest"
   }
 }
