@@ -19,13 +19,13 @@
        <td>{{book.edition}}</td>
        <td>
        <router-link class="button"
-         :to="'/book/show/'+book._id">Show</router-link>
+         :to="'/book/show/'+book.id">Show</router-link>
        &nbsp;
        <router-link class="button"
-         :to="'/book/edit/'+book._id">Edit</router-link>
+         :to="'/book/edit/'+book.id">Edit</router-link>
        &nbsp;
        <a class="button"
-         v-on:click="deleteBook(book._id)">Erase</a>
+         v-on:click="deleteBook(book.id)">Erase</a>
        </td>
        </tr></tbody>
      </table>
