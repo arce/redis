@@ -56,7 +56,7 @@
 import { useRoute } from 'vue-router'
 export default {
   name: "Book Details",
-  props: ['create','edit','create'],
+  props: ['show','edit','create'],
   data() {
     return {
       title: "Book Data",
@@ -69,7 +69,7 @@ export default {
       this.findBook(route.params.id);
     else {
       this.book = {
-        '_id': 'book_'+Math.floor(Math.random()*100000000),'title':'','edition':'',
+        'id': 'book_'+Math.floor(Math.random()*100000000),'title':'','edition':'',
         'copyright':0,'language':'','pages':0,'author':'','author_id':0,
         'publisher':'','publisher_id':0 };
     }
