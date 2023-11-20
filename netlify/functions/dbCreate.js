@@ -65,9 +65,9 @@ exports.handler = async (event, context) => {
 	 const n = books.length;
 		
    for(let i = 1; i<=n; i++)
-     await redis.put('book_'+i,JSON.stringify(books[i-1]));
+     await redis.set('book_'+i,JSON.stringify(books[i-1]));
 	 
-   await redis.put('book_N',n);
+   await redis.set('book_N',n);
     
    return { statusCode: 200, headers, body: 'OK'};
   } catch (error) {
